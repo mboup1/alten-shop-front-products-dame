@@ -26,6 +26,7 @@
 .product-card .product-details .product-name {
   font-size: 1.2rem;
   font-weight: bold;
+
 }
 
 .product-card .product-details .product-category {
@@ -45,7 +46,7 @@
 .product-card .product-details .product-actions button {
   padding: 8px 16px;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #2251B1;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -53,4 +54,8 @@
 
 .product-card .product-details .product-actions button:hover {
   background-color: #0056b3;
+}
+
+.product-rating{
+  color: #2251B1;
 }

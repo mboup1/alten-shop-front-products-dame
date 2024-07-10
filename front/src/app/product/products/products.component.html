@@ -1,16 +1,20 @@
 <!-- products.component.html -->
 
 <div class="grid">
-  <div class="product-card" *ngFor="let product of products">
+  <div class="product-card text-center" *ngFor="let product of products">
     <!-- <img [src]="'assets/' + product.image" [alt]="product.name"> -->
     <div class="product-details">
       <div class="product-category">{{ product.category }}</div>
+      <div class="mb-3">{{ product.inventoryStatus }}</div>
       <div class="product-name">{{ product.name }}</div>
-      <div class="product-price">{{ '$' + product.price }}</div>
       <div>Product Description</div>
+      <div class="product-rating ">{{generateStarRating(product.rating) }}</div>
       <div class="product-actions">
-        <button class="btn btn-primary" (click)="addItemToCart(product)">Add to Cart</button>
+        <span class="product-price m-1">{{ '$' + product.price }}</span>
+        <button class="btn btn-primary" (click)="addItemToCart(product)"> <i class="fas fa-cart-plus"></i></button>
       </div>
     </div>
   </div>
 </div>
+
+
