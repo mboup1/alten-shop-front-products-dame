@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsAdminComponent } from './products-admin/products-admin.component';
 import { ProductsComponent } from './products/products.component';
 import { CommonModule } from '@angular/common';
+import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
-  { path: 'products', component: ProductsComponent },
+  { path: '', component: ProductsComponent, },
   { path: 'admin/products', component: ProductsAdminComponent },
+  { path: 'admin/addprod', component: AddProductComponent },
 ];
 
 @NgModule({

@@ -8,12 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { DataViewModule } from 'primeng/dataview';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 @NgModule({
   declarations: [
     ProductsAdminComponent,
     ProductsComponent,
+    AddProductComponent,
   ],
 
   imports: [
@@ -24,7 +26,7 @@ import { DataViewModule } from 'primeng/dataview';
     DataViewModule,
     ProductRoutingModule,
   ],
-  exports: [ProductsComponent, ProductsAdminComponent]
+  exports: [ProductsComponent, ProductsAdminComponent, AddProductComponent]
 
 })
 export class ProductModule { }
