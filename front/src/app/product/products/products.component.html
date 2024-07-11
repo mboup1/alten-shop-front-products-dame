@@ -10,7 +10,7 @@
       <div>Product Description</div>
       <div class="product-rating ">{{generateStarRating(product.rating) }}</div>
       <div class="product-actions">
-        <span class="product-price m-1">{{ '$' + product.price }}</span>
+        <span class="product-price m-1">{{product.price | currency}}</span>
         <button class="btn btn-primary" (click)="addItemToCart(product)"> <i class="fas fa-cart-plus"></i></button>
       </div>
     </div>

@@ -19,10 +19,9 @@ import { DataViewModule } from 'primeng/dataview';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    // RouterLink,
+    ProductRoutingModule,
     TableModule,
     DataViewModule,
-    ProductRoutingModule,
   ],
   exports: [ProductsComponent, ProductsAdminComponent]
 

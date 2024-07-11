@@ -5,7 +5,7 @@ import { ProductsComponent } from './products/products.component';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-  { path: 'products', component: ProductsComponent },
+  { path: '', component: ProductsComponent },
   { path: 'admin/products', component: ProductsAdminComponent },
 ];
 
