@@ -5,3 +5,26 @@
     width: 100%;
     z-index: 1;
 }
+
+.app-container {
+
+  &.sidenav-expanded {
+    .app-content {
+      margin-left: 240px;
+    }
+  }
+
+  &.sidenav-pinned {
+    .app-content {
+      margin-left: 240px;
+    }
+  }
+
+  .app-content {
+    flex: 1;
+    margin-left: 60px;
+    transition: margin-left 0.3s;
+    padding-left: 20px;
+    padding-bottom: 50px;
+  }
+}

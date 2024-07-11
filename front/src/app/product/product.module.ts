@@ -21,10 +21,9 @@ import { AddProductComponent } from './add-product/add-product.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    // RouterLink,
+    ProductRoutingModule,
     TableModule,
     DataViewModule,
-    ProductRoutingModule,
   ],
   exports: [ProductsComponent, ProductsAdminComponent, AddProductComponent]
 

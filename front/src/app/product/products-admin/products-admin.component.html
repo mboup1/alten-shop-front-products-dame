@@ -1,2 +1,37 @@
-<p>products-admin works!</p>
-<h1>Hello Admin!</h1>
+<div class="table-responsive container mt-2">
+  <div class="mb-2">
+    <button class="btn btn-success me-2" routerLink="/admin/addprod">New</button>
+    <button class="btn btn-danger" ><i class="fas fa-trash-alt"></i> Delete</button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 10%">
+          <input type="checkbox" (change)="toggleSelectAll($event)">
+        </th>
+        <th>
+          <input type="text" class="form-control" placeholder="Search Code" (input)="onSearchCode($event)">
+          <button class="btn btn-link p-0" (click)="onSort('code')">Code ⇵</button>
+        </th>
+        <th>
+          <input type="text" class="form-control" placeholder="Search Name" (input)="onSearchName($event)">
+          <button class="btn btn-link p-0" (click)="onSort('name')">Name ⇵</button>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>
+          <input type="checkbox" [checked]="isSelected(product)" (change)="onSelectProduct(product)">
+        </td>
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>
+          <button class="btn btn-primary me-1 rounded-circle" (click)="editProduct(product)"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-danger rounded-circle" (click)="deleteProduct(product)"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

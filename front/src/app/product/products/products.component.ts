@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
       this.products = data.data;
-      console.log(this.products, this.products)
+      // console.log("this.products in ProductsComponent : ", this.products)
     });
   }
 
@@ -24,13 +24,12 @@ export class ProductsComponent implements OnInit {
     console.log('Adding item to cart:', product);
   }
 
-  generateStarRating(rating: number) {
+  generateStarRating(rating: number): string {
     const maxStars = 5;
-    const fullStars = Math.floor(rating);
+    const fullStars = Math.max(0, Math.min(maxStars, Math.floor(rating)));
     const halfStar = rating % 1 !== 0;
     const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
     const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
     return stars;
   }
-
 }

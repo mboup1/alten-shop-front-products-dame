@@ -1,3 +1,5 @@
+// navbar.component.scss
+
 .navbar {
   display: flex;
   position: relative;
@@ -42,12 +44,12 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    
+
   }
 
   .user-button {
     position: relative;
     height: 40px;
-  }  
+  }
 
 }
