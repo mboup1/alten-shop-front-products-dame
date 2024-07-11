@@ -1,20 +1,24 @@
 <!-- products.component.html -->
 
-<div class="grid">
-  <div class="product-card text-center" *ngFor="let product of products">
-    <!-- <img [src]="'assets/' + product.image" [alt]="product.name"> -->
-    <div class="product-details">
-      <div class="product-category">{{ product.category }}</div>
-      <div class="mb-3">{{ product.inventoryStatus }}</div>
-      <div class="product-name">{{ product.name }}</div>
-      <div>Product Description</div>
-      <div class="product-rating ">{{generateStarRating(product.rating) }}</div>
-      <div class="product-actions">
-        <span class="product-price m-1">{{product.price | currency}}</span>
-        <button class="btn btn-primary" (click)="addItemToCart(product)"> <i class="fas fa-cart-plus"></i></button>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-xs-6 col-md-6 col-lg-4 mb-3" *ngFor="let product of products">
+      <div class="card h-100 text-center">
+        <!-- <img [src]="'assets/' + product.image" [alt]="product.name"> -->
+        <div class="card-body">
+          <div class="product-category">{{ product.category }}</div>
+          <div class="mb-3">{{ product.inventoryStatus }}</div>
+          <div class="product-name">{{ product.name }}</div>
+          <div>Product Description</div>
+          <div class="product-rating">{{ generateStarRating(product.rating) }}</div>
+          <div class="product-actions mt-3">
+            <span class="product-price m-1">{{ product.price | currency }}</span>
+            <button class="btn btn-primary" (click)="addItemToCart(product)">
+              <i class="fas fa-cart-plus"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
