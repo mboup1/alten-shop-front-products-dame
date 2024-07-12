@@ -1,23 +1,82 @@
-<!-- products.component.html -->
-
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-xs-6 col-md-6 col-lg-4 mb-3" *ngFor="let product of products">
-      <div class="card h-100 text-center">
-        <div class="card-body">
-          <div class="product-category">{{ product.category }}</div>
-          <div class="mb-3">{{ product.inventoryStatus }}</div>
-          <div class="product-name">{{ product.name }}</div>
-          <div>Product Description</div>
-          <div class="product-rating">{{ generateStarRating(product.rating) }}</div>
-          <div class="product-actions mt-3">
-            <span class="product-price m-1">{{ product.price | currency }}</span>
+  <!-- Sort By, Search, and Toggle View Line -->
+  <div class="row mb-2 mt-2">
+    <!-- Sort By Dropdown -->
+    <div class="col-md-3">
+      <select id="sortBy" class="form-select" [formControl]="sortByControl">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+    <!-- Search Input -->
+    <div class="col-md-3">
+      <input type="text" id="search" class="form-control" placeholder="Search" [formControl]="searchTermControl">
+    </div>
+    <!-- View Toggle Buttons (Moved to the end of the row) -->
+    <div class="col-md-6 d-flex justify-content-end align-items-end">
+      <button class="btn btn-outline-secondary me-2" [class.active]="showList" (click)="toggleView()">
+        <i class="fas fa-list"></i>
+      </button>
+      <button class="btn btn-outline-secondary" [class.active]="!showList" (click)="toggleView()">
+        <i class="fas fa-th"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display based on showList -->
+  <div *ngIf="showList; else cardView">
+    <!-- Table View -->
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Inventory Status</th>
+          <th>Price</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts">
+          <td>{{ product.category }}</td>
+          <td>{{ product.name }}</td>
+          <td>Product Description</td>
+          <td>{{ product.inventoryStatus }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ generateStarRating(product.rating) }}</td>
+          <td>
             <button class="btn btn-primary" (click)="addItemToCart(product)">
-              <i class="fas fa-cart-plus"></i>
+              <i class="fas fa-cart-plus"></i> Add to Cart
             </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Card View -->
+  <ng-template #cardView>
+    <div class="row">
+      <div class="col-12 col-xs-6 col-md-6 col-lg-4 mb-3" *ngFor="let product of filteredProducts">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="product-category">{{ product.category }}</div>
+            <div class="mb-3">{{ product.inventoryStatus }}</div>
+            <div class="product-name">{{ product.name }}</div>
+            <div>Product Description</div>
+            <div class="product-rating">{{ generateStarRating(product.rating) }}</div>
+            <div class="product-actions mt-3">
+              <span class="product-price m-1">{{ product.price | currency }}</span>
+              <button class="btn btn-primary" (click)="addItemToCart(product)">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

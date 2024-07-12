@@ -22,7 +22,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     CommonModule,
     ReactiveFormsModule,
     ProductRoutingModule,
-    RouterModule,
+    // RouterModule,
     // TableModule,
     // DataViewModule,
   ],
