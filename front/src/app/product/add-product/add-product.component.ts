@@ -21,6 +21,7 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.initForm();
   }
 
@@ -53,22 +54,22 @@ export class AddProductComponent implements OnInit {
         rating: this.newProductForm.value.rating,
       };
 
-      this.productService.addProduct(newProduct).subscribe(
-        (response: Product) => {
+      this.productService.addProduct(newProduct).subscribe({
+        next: (response: Product) => {
           this.successMessage = 'The product was successfully added!';
           this.errorMessage = null;
           this.newProductForm.reset();
-
+  
           setTimeout(() => {
             this.router.navigate(['/products']);
           }, 3000);
         },
-        (error) => {
+        error: (error) => {
           this.errorMessage = 'An error occurred while adding the product.';
           this.successMessage = null;
           console.error('Error adding product:', error);
         }
-      );
+      });
     }
   }
 }

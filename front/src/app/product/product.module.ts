@@ -5,10 +5,9 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductsAdminComponent } from './products-admin/products-admin.component';
 import { ProductsComponent } from './products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { TableModule } from 'primeng/table';
-import { DataViewModule } from 'primeng/dataview';
+import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 @NgModule({
@@ -16,14 +15,16 @@ import { AddProductComponent } from './add-product/add-product.component';
     ProductsAdminComponent,
     ProductsComponent,
     AddProductComponent,
+    EditProductComponent,
   ],
 
   imports: [
     CommonModule,
     ReactiveFormsModule,
     ProductRoutingModule,
-    TableModule,
-    DataViewModule,
+    RouterModule,
+    // TableModule,
+    // DataViewModule,
   ],
   exports: [ProductsComponent, ProductsAdminComponent, AddProductComponent]
 

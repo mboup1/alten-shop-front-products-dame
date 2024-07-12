@@ -1,0 +1,70 @@
+<div class="row m-5">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
+      <div class="bg-white shadow rounded p-4">
+        <h1 class="display-6 text-dark text-center">Edit Product</h1>
+        <hr class="bg-dark mb-5" />
+        <div class="text-success text-center fs-3 mb-2" *ngIf="successMessage">{{ successMessage }}</div>
+        <div class="text-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
+  
+        <form [formGroup]="editProductForm" (ngSubmit)="updateProduct()">
+          <div class="form-group mb-3">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" class="form-control" formControlName="name">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productCode">Product Code:</label>
+            <input type="text" id="productCode" class="form-control" formControlName="code">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productDescription">Product Description:</label>
+            <textarea id="productDescription" class="form-control" formControlName="description"></textarea>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productImage">Product Image:</label>
+            <input type="text" id="productImage" class="form-control" formControlName="image">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productPrice">Product Price:</label>
+            <input type="number" id="productPrice" class="form-control" formControlName="price">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productCategory">Product Category:</label>
+            <input type="text" id="productCategory" class="form-control" formControlName="category">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productQuantity">Quantity:</label>
+            <input type="number" id="productQuantity" class="form-control" formControlName="quantity">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="inventoryStatus">Inventory Status:</label>
+            <input type="text" id="inventoryStatus" class="form-control" formControlName="inventoryStatus">
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="productRating">Product Rating:</label>
+            <select id="productRating" class="form-control" formControlName="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+  
+          <div class="d-flex">
+            <button class="btn btn-primary mx-auto" type="submit" [disabled]="!editProductForm.valid">
+              Update Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
