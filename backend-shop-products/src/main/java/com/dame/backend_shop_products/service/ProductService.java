@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -25,9 +26,15 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
+
     public Product updateProduct(Long id, Product productDetails) {
-        Product existingProduct = getProductById(id);
-        if (existingProduct != null) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+
+        if (optionalProduct.isPresent()) {
+            Product existingProduct = optionalProduct.get();
             existingProduct.setCode(productDetails.getCode());
             existingProduct.setName(productDetails.getName());
             existingProduct.setDescription(productDetails.getDescription());
@@ -37,18 +44,10 @@ public class ProductService {
             existingProduct.setQuantity(productDetails.getQuantity());
             existingProduct.setInventoryStatus(productDetails.getInventoryStatus());
             existingProduct.setRating(productDetails.getRating());
+
             return productRepository.save(existingProduct);
         } else {
             return null;
-        }
-    }
-
-    public boolean deleteProduct(Long id) {
-        if (productRepository.existsById(id)) {
-            productRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
         }
     }
 }
