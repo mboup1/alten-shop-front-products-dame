@@ -44,7 +44,11 @@
 
         <div class="form-group mb-3">
           <label for="inventoryStatus">Inventory Status:</label>
-          <input type="text" id="inventoryStatus" class="form-control" formControlName="inventoryStatus">
+          <select id="inventoryStatus" class="form-control" formControlName="inventoryStatus">
+            <option value="INSTOCK">In Stock</option>
+            <option value="LOWSTOCK">Low Stock</option>
+            <option value="OUTOFSTOCK">Out of Stock</option>
+          </select>
         </div>
 
         <div class="form-group mb-3">
