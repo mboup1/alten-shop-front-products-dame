@@ -70,7 +70,7 @@
             <div class="product-rating">{{ generateStarRating(product.rating) }}</div>
             <div class="product-actions mt-3">
               <span class="product-price m-1">{{ product.price | currency }}</span>
-              <button class="btn btn-primary" (click)="addItemToCart(product)">
+              <button class="btn btn-primary product-addItemToCart" (click)="addItemToCart(product)">
                 <i class="fas fa-cart-plus "></i> 
               </button>
             </div>
