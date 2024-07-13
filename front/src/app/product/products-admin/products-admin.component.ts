@@ -17,6 +17,9 @@ export class ProductsAdminComponent implements OnInit {
   sortField = '';
   sortOrder = 1;
   selectedProducts: Product[] = [];
+  paginatedProducts: Product[] = [];
+  itemsPerPage = 10;
+  currentPage = 1;
 
   constructor(
     private productService: ProductService,
@@ -26,6 +29,8 @@ export class ProductsAdminComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+      this.applyPagination();
+
       this.filteredProducts = [...this.products];
     });
   }
@@ -126,5 +131,20 @@ export class ProductsAdminComponent implements OnInit {
       });
       this.selectedProducts = [];
     }
+  }
+
+  applyPagination(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.paginatedProducts = this.filteredProducts.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onItemsPerPageChange(): void {
+    this.currentPage = 1;
+    this.applyPagination();
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.applyPagination();
   }
 }
