@@ -22,7 +22,7 @@ import { TagModule } from 'primeng/tag';
     SharedModule,
     BaseModule,
     ProductModule,
-    TagModule
+    TagModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en' }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from 'app/interfaces/product';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products-admin',
@@ -20,6 +21,8 @@ export class ProductsAdminComponent implements OnInit {
   paginatedProducts: Product[] = [];
   itemsPerPage = 10;
   currentPage = 1;
+  pageSizes = [10, 25, 50];
+
 
   constructor(
     private productService: ProductService,
@@ -63,6 +66,7 @@ export class ProductsAdminComponent implements OnInit {
       product.name.toLowerCase().includes(this.searchName)
     );
     this.sortProducts();
+    this.applyPagination();
   }
 
   sortProducts(): void {
@@ -73,6 +77,7 @@ export class ProductsAdminComponent implements OnInit {
       if (valueA > valueB) return 1 * this.sortOrder;
       return 0;
     });
+    this.applyPagination();
   }
 
   isSelected(product: Product): boolean {
@@ -143,8 +148,9 @@ export class ProductsAdminComponent implements OnInit {
     this.applyPagination();
   }
 
-  onPageChange(pageNumber: number): void {
-    this.currentPage = pageNumber;
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex + 1;
+    this.itemsPerPage = event.pageSize;
     this.applyPagination();
   }
 }

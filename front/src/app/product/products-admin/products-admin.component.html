@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of filteredProducts">
+      <tr *ngFor="let product of paginatedProducts">
         <td>
           <input type="checkbox" [checked]="isSelected(product)" (change)="onSelectProduct(product)">
         </td>
@@ -41,4 +41,13 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <mat-paginator [length]="filteredProducts.length" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizes"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+  </div>
+
 </div>

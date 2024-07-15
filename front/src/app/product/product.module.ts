@@ -8,6 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -22,9 +25,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     CommonModule,
     ReactiveFormsModule,
     ProductRoutingModule,
-    // RouterModule,
-    // TableModule,
-    // DataViewModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
   ],
   exports: [ProductsComponent, ProductsAdminComponent, AddProductComponent]
 

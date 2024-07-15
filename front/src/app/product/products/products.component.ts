@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from 'app/interfaces/product';
 import { FormControl } from '@angular/forms';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,13 @@ export class ProductsComponent implements OnInit {
   showList = false;
 
   itemsPerPageControl = new FormControl(10);
-  currentPage = 1;
+  currentPage = 0;
+  pageSize = 10;
   totalPages = 0;
   pageSizes = [10, 25, 50];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   constructor(private productService: ProductService) { }
 
@@ -28,11 +33,22 @@ export class ProductsComponent implements OnInit {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
       this.filteredProducts = [...this.products];
+      this.updatePaginator();
     });
 
     this.sortByControl.valueChanges.subscribe(() => this.sortProducts());
     this.searchTermControl.valueChanges.subscribe(() => this.filterProducts());
   }
+
+  ngAfterViewInit(): void {
+    this.paginator.page.subscribe((event: PageEvent) => {
+      this.currentPage = event.pageIndex;
+      this.pageSize = event.pageSize;
+      this.updatePaginator();
+    });
+  }
+
+
 
   filterProducts(): void {
     const searchTerm = this.searchTermControl.value.trim().toLowerCase();
@@ -41,6 +57,7 @@ export class ProductsComponent implements OnInit {
       product.category.toLowerCase().includes(searchTerm)
     );
     this.sortProducts();
+    this.updatePaginator();
   }
 
   sortProducts(): void {
@@ -55,6 +72,7 @@ export class ProductsComponent implements OnInit {
       }
       return 0;
     });
+    this.updatePaginator();
   }
 
   toggleView(): void {
@@ -74,24 +92,16 @@ export class ProductsComponent implements OnInit {
     return stars;
   }
 
-  paginate(): void {
-    const itemsPerPage = this.itemsPerPageControl.value;
-    this.totalPages = Math.ceil(this.filteredProducts.length / itemsPerPage);
-    this.currentPage = Math.min(this.currentPage, this.totalPages);
-    const start = (this.currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    this.paginatedProducts = this.filteredProducts.slice(start, end);
+  updatePaginator(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    this.paginatedProducts = this.filteredProducts.slice(startIndex, startIndex + this.pageSize);
+    this.totalPages = Math.ceil(this.filteredProducts.length / this.pageSize);
   }
 
-  changePage(page: number): void {
-    if (page < 1 || page > this.totalPages) {
-      return;
-    }
-    this.currentPage = page;
-    this.paginate();
-  }
+  changePage(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePaginator();
 
-  get totalPagesArray(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 }
