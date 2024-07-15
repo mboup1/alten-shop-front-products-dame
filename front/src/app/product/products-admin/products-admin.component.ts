@@ -32,9 +32,8 @@ export class ProductsAdminComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
-      this.applyPagination();
-
       this.filteredProducts = [...this.products];
+      this.applyPagination();
     });
   }
 
