@@ -12,9 +12,15 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  sortByControl = new FormControl('name'); 
+  paginatedProducts: Product[] = [];
+  sortByControl = new FormControl('name');
   searchTermControl = new FormControl('');
   showList = false;
+
+  itemsPerPageControl = new FormControl(10);
+  currentPage = 1;
+  totalPages = 0;
+  pageSizes = [10, 25, 50];
 
   constructor(private productService: ProductService) { }
 
@@ -52,7 +58,7 @@ export class ProductsComponent implements OnInit {
   }
 
   toggleView(): void {
-    this.showList = !this.showList; // Inverser la valeur entre true et false
+    this.showList = !this.showList;
   }
 
   addItemToCart(product: Product): void {
@@ -66,5 +72,26 @@ export class ProductsComponent implements OnInit {
     const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
     const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
     return stars;
+  }
+
+  paginate(): void {
+    const itemsPerPage = this.itemsPerPageControl.value;
+    this.totalPages = Math.ceil(this.filteredProducts.length / itemsPerPage);
+    this.currentPage = Math.min(this.currentPage, this.totalPages);
+    const start = (this.currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    this.paginatedProducts = this.filteredProducts.slice(start, end);
+  }
+
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+    this.currentPage = page;
+    this.paginate();
+  }
+
+  get totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 }
