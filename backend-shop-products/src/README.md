@@ -49,3 +49,8 @@ spring.main.allow-circular-references=true
 
 # Path to products.json file
 products.json.filepath=classpath:data/products.json
+
+
+# Springdoc OpenAPI configuration
+springdoc.api-docs.path=/api-docs
+springdoc.swagger-ui.path=/swagger-ui
