@@ -3,19 +3,19 @@
     color: #fff;
     border: none;
   }
-  
+
   .settings-button:hover {
     background-color: #1a3d8f;
     color: #fff;
   }
-  
+
 
   .delete-button {
     background-color: #E0E0E0;
     color: #000;
     border: none;
   }
-  
+
   .delete-button:hover {
     background-color: #bdbdbd;
     color: #000;
@@ -24,6 +24,22 @@
   .no-decoration {
     text-decoration: none;
   }
-  
 
-  
+  .icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-btn i {
+  color: red;
+  font-size: 1.25rem;
+}
+
+.icon-btn.me-2 i {
+  color: #2251B1;
+}
+
+
+
