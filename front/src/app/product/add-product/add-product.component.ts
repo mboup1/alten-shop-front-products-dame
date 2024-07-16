@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'app/interfaces/product';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-product',
@@ -12,16 +13,18 @@ import { Product } from 'app/interfaces/product';
 export class AddProductComponent implements OnInit {
 
   newProductForm!: FormGroup;
-  successMessage: string | null = null;
-  errorMessage: string | null = null;
+  // successMessage: string | null = null;
+  // errorMessage: string | null = null;
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
+
   ) { }
 
   ngOnInit(): void {
-    
+
     this.initForm();
   }
 
@@ -56,17 +59,17 @@ export class AddProductComponent implements OnInit {
 
       this.productService.addProduct(newProduct).subscribe({
         next: (response: Product) => {
-          this.successMessage = 'The product was successfully added!';
-          this.errorMessage = null;
+          this.snackBar.open('The product was successfully added!', 'Close', {
+            duration: 3000,
+            panelClass: ['success-snackbar']
+          });
           this.newProductForm.reset();
-  
-          setTimeout(() => {
-            this.router.navigate(['/products']);
-          }, 3000);
         },
         error: (error) => {
-          this.errorMessage = 'An error occurred while adding the product.';
-          this.successMessage = null;
+          this.snackBar.open('An error occurred while adding the product.', 'Close', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
           console.error('Error adding product:', error);
         }
       });

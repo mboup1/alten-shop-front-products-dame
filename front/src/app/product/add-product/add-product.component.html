@@ -3,8 +3,8 @@
     <div class="bg-white shadow rounded p-4">
       <h1 class="display-6 text-dark text-center">Add a Product</h1>
       <hr class="bg-dark mb-5" />
-      <div class="text-success text-center fs-3 mb-2" *ngIf="successMessage">{{ successMessage }}</div>
-      <div class="text-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <!-- <div class="text-success text-center fs-3 mb-2" *ngIf="successMessage">{{ successMessage }}</div>
+      <div class="text-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div> -->
 
       <form [formGroup]="newProductForm" (ngSubmit)="addProduct()">
         <div class="form-group mb-3">

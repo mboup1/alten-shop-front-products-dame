@@ -3,6 +3,8 @@ import { ProductService } from '../product.service';
 import { Product } from 'app/interfaces/product';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-products-admin',
@@ -26,7 +28,8 @@ export class ProductsAdminComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -114,6 +117,10 @@ export class ProductsAdminComponent implements OnInit {
         this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
         // console.log('Product deleted successfully');
         this.applyPagination();
+
+        this.snackBar.open('Product deleted successfully', 'Close', {
+          duration: 3000,
+        });
       },
       error => {
         console.error('Error deleting product:', error);
@@ -129,7 +136,10 @@ export class ProductsAdminComponent implements OnInit {
             this.products = this.products.filter(p => p.id !== product.id);
             this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
             this.applyPagination();
-            // console.log('Product deleted successfully:', product.id);
+
+            this.snackBar.open('Product(s) deleted successfully', 'Close', {
+              duration: 3000,
+            });
           },
           error => {
             console.error('Error deleting product:', error);
