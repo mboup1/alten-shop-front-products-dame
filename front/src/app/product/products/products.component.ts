@@ -104,4 +104,17 @@ export class ProductsComponent implements OnInit {
     this.updatePaginator();
 
   }
+
+  // goToFirstPage(): void {
+  //   this.paginator.firstPage();
+  //   this.currentPage = 0;
+  //   this.updatePaginator();
+  // }
+
+  // goToLastPage(): void {
+  //   const lastPageIndex = Math.ceil(this.filteredProducts.length / this.pageSize) - 1;
+  //   this.paginator.pageIndex = lastPageIndex;
+  //   this.currentPage = lastPageIndex;
+  //   this.updatePaginator();
+  // }
 }

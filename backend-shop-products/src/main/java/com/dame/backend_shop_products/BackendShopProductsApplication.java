@@ -4,7 +4,6 @@ import com.dame.backend_shop_products.entity.Product;
 import com.dame.backend_shop_products.repository.ProductRepository;
 import com.dame.backend_shop_products.service.ProductService;
 import jakarta.annotation.PostConstruct;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 public class BackendShopProductsApplication {

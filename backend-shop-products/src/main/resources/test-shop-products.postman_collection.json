@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "0bd11338-3bb7-49b1-adc2-697c6e5be449",
+		"name": "test-shop-products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27240622"
+	},
+	"item": [
+		{
+			"name": "saveProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveProduct2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProduct",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product2\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllProducts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProduct",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"P001\",\r\n    \"name\": \"Example Product\",\r\n    \"description\": \"This is an example product\",\r\n    \"image\": \"example.jpg\",\r\n    \"price\": 99.99,\r\n    \"category\": \"Electronics\",\r\n    \"quantity\": 10,\r\n    \"inventoryStatus\": \"In Stock\",\r\n    \"rating\": 4.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
