@@ -16,7 +16,7 @@ Le design cible est visible sur les captures d'écrans ci-dessous (et disponible
 ![admin](front/doc/products-admin.png) -->
 
 **Pour la partie Admin avec Dame MBOUP :**
-![admin](front/doc/dame/products-admin-dame_.jpg)
+![admin](front/doc/dame/products-admin-dame.jpg)
 
 Nous vous conseillons d'utiliser le composant table de [PrimeNG](https://primeng.org/table/filter) avec les options filtre, edit, page, etc...
 

@@ -32,6 +32,7 @@ export class ProductsAdminComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+
       this.filteredProducts = [...this.products];
       this.applyPagination();
     });
@@ -111,7 +112,8 @@ export class ProductsAdminComponent implements OnInit {
       () => {
         this.products = this.products.filter(p => p.id !== product.id);
         this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
-        console.log('Product deleted successfully');
+        // console.log('Product deleted successfully');
+        this.applyPagination();
       },
       error => {
         console.error('Error deleting product:', error);
@@ -126,7 +128,8 @@ export class ProductsAdminComponent implements OnInit {
           () => {
             this.products = this.products.filter(p => p.id !== product.id);
             this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
-            console.log('Product deleted successfully:', product.id);
+            this.applyPagination();
+            // console.log('Product deleted successfully:', product.id);
           },
           error => {
             console.error('Error deleting product:', error);

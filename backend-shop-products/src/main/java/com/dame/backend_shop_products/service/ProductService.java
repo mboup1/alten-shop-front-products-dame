@@ -56,16 +56,14 @@ public class ProductService {
     }
 
 
-//    public void deleteProduct(Long id) {
-//        if (!productRepository.existsById(id)) {
-//            throw new ProductNotFoundException("No product found with this ID: " + id);
-//        }
-//        productRepository.deleteById(id);
-//    }
-
     public void deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new ProductNotFoundException("No product found with this ID: " + id);
+        }
         productRepository.deleteById(id);
     }
+
+//    public void deleteProduct(Long id) {productRepository.deleteById(id); }
 
     public Product updateProduct(Long id, Product productDetails) {
         Product existingProduct = productRepository.findById(id)
