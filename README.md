@@ -15,19 +15,26 @@ Le design cible est visible sur les captures d'écrans ci-dessous (et disponible
 <!-- **Pour la partie Admin :**
 ![admin](front/doc/products-admin.png) -->
 
-**Pour la partie Admin de Dame MBOUP :**
-![admin](front/doc/dame/products-admin-dame.png.jpg)
+**Pour la partie Admin avec Dame MBOUP :**
+![admin](front/doc/dame/products-admin-dame.jpg)
 
 Nous vous conseillons d'utiliser le composant table de [PrimeNG](https://primeng.org/table/filter) avec les options filtre, edit, page, etc...
 
  <!-- **Pour la partie publique :**
 ![public](front/doc/products.png) -->
 
- **Pour la partie publique de Dame MBOUP :**
-![public](front/doc/dame/products-dame.png.jpg)
+ **Pour la partie publique avec Dame MBOUP :**
+![public](front/doc/dame/products-dame.jpg)
 
 Nous vous conseillons d'utiliser le composant data view de [PrimeNG](https://primeng.org/dataview) avec les options sort, search, page, etc...
 
+
+ **Ajouter un produit  avec Dame MBOUP :**
+![public](front/doc/dame/add-product-dame.jpg)
+
+
+ **Modifier un produit  avec Dame MBOUP :**
+![public](front/doc/dame/edit-product-dame.jpg)
 
 Le menu latéral gauche doit contenir les accès à ces 2 composants.
 
