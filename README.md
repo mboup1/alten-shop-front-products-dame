@@ -12,14 +12,19 @@ Le service qui permettra de manipuler les produits doit se baser sur cette liste
 
 Le design cible est visible sur les captures d'écrans ci-dessous (et disponibles dans le dossier `front/doc`).
 
-**Pour la partie Admin :**
-![admin](front/doc/products-admin.png)
-<!-- ![admin](front/doc/products-admin.png) -->
+<!-- **Pour la partie Admin :**
+![admin](front/doc/products-admin.png) -->
+
+**Pour la partie Admin de Dame MBOUP :**
+![admin](front/doc/dame/products-admin-dame.png.jpg)
 
 Nous vous conseillons d'utiliser le composant table de [PrimeNG](https://primeng.org/table/filter) avec les options filtre, edit, page, etc...
 
- **Pour la partie publique :**
-![public](front/doc/products.png)
+ <!-- **Pour la partie publique :**
+![public](front/doc/products.png) -->
+
+ **Pour la partie publique de Dame MBOUP :**
+![public](front/doc/dame/products-dame.png.jpg)
 
 Nous vous conseillons d'utiliser le composant data view de [PrimeNG](https://primeng.org/dataview) avec les options sort, search, page, etc...
 

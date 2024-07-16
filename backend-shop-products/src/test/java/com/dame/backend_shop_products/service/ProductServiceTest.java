@@ -75,6 +75,7 @@ public class ProductServiceTest {
 
     @Test
     void testDeleteProduct() {
+        when(productRepository.existsById(1L)).thenReturn(true);
         doNothing().when(productRepository).deleteById(1L);
 
         productService.deleteProduct(1L);
