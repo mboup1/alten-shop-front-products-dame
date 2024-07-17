@@ -18,8 +18,8 @@ export class AddProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
 
   ) { }
 
@@ -59,11 +59,12 @@ export class AddProductComponent implements OnInit {
 
       this.productService.addProduct(newProduct).subscribe({
         next: (response: Product) => {
-          this.snackBar.open('The product was successfully added!', 'Close', {
+          this.snackBar.open('The product was successfully added !', 'Close', {
             duration: 3000,
             panelClass: ['success-snackbar']
           });
           this.newProductForm.reset();
+          this.router.navigate(['/admin/products']);
         },
         error: (error) => {
           this.snackBar.open('An error occurred while adding the product.', 'Close', {

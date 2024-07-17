@@ -21,6 +21,7 @@ export class ProductsAdminComponent implements OnInit {
   sortOrder = 1;
   selectedProducts: Product[] = [];
   paginatedProducts: Product[] = [];
+
   itemsPerPage = 10;
   currentPage = 1;
   pageSizes = [10, 25, 50];
@@ -35,7 +36,6 @@ export class ProductsAdminComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
-
       this.filteredProducts = [...this.products];
       this.applyPagination();
     });
@@ -44,6 +44,7 @@ export class ProductsAdminComponent implements OnInit {
   onSearchCode(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.searchCode = target.value.trim().toLowerCase();
+
     this.filterProducts();
   }
 
@@ -54,6 +55,7 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   onSort(field: string): void {
+
     if (this.sortField === field) {
       this.sortOrder = -this.sortOrder;
     } else {
@@ -99,8 +101,11 @@ export class ProductsAdminComponent implements OnInit {
   toggleSelectAll(event: Event): void {
     const target = event.target as HTMLInputElement;
     const isChecked = target.checked;
+
+
     if (isChecked) {
       this.selectedProducts = [...this.filteredProducts];
+      // console.log("this.selectedProducts : ", this.selectedProducts)
     } else {
       this.selectedProducts = [];
     }
@@ -111,28 +116,29 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   deleteProduct(product: Product): void {
-    this.productService.deleteProduct(product.id).subscribe(
-      () => {
+    this.productService.deleteProduct(product.id).subscribe({
+      next: () => {
         this.products = this.products.filter(p => p.id !== product.id);
         this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
-        // console.log('Product deleted successfully');
+
         this.applyPagination();
 
         this.snackBar.open('Product deleted successfully', 'Close', {
           duration: 3000,
         });
       },
-      error => {
+      error: error => {
         console.error('Error deleting product:', error);
       }
-    );
+    });
   }
+
 
   deleteSelectedProducts(): void {
     if (confirm(`Are you sure you want to delete ${this.selectedProducts.length} selected product(s)?`)) {
       this.selectedProducts.forEach(product => {
-        this.productService.deleteProduct(product.id).subscribe(
-          () => {
+        this.productService.deleteProduct(product.id).subscribe({
+          next: () => {
             this.products = this.products.filter(p => p.id !== product.id);
             this.filteredProducts = this.filteredProducts.filter(p => p.id !== product.id);
             this.applyPagination();
@@ -141,14 +147,15 @@ export class ProductsAdminComponent implements OnInit {
               duration: 3000,
             });
           },
-          error => {
+          error: error => {
             console.error('Error deleting product:', error);
           }
-        );
+        });
       });
       this.selectedProducts = [];
     }
   }
+
 
   applyPagination(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;

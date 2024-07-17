@@ -32,12 +32,15 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+      // console.log("this.products : ",this.products)
       this.filteredProducts = [...this.products];
+
       this.updatePaginator();
     });
 
     this.sortByControl.valueChanges.subscribe(() => this.sortProducts());
     this.searchTermControl.valueChanges.subscribe(() => this.filterProducts());
+
   }
 
   ngAfterViewInit(): void {
@@ -83,19 +86,14 @@ export class ProductsComponent implements OnInit {
     console.log('Adding item to cart:', product);
   }
 
-  generateStarRating(rating: number): string {
-    const maxStars = 5;
-    const fullStars = Math.max(0, Math.min(maxStars, Math.floor(rating)));
-    const halfStar = rating % 1 !== 0;
-    const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
-    const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
-    return stars;
-  }
-
   updatePaginator(): void {
     const startIndex = this.currentPage * this.pageSize;
+
     this.paginatedProducts = this.filteredProducts.slice(startIndex, startIndex + this.pageSize);
     this.totalPages = Math.ceil(this.filteredProducts.length / this.pageSize);
+
+    // console.log("this.totalPages : ", this.totalPages)
+
   }
 
   changePage(event: PageEvent): void {
@@ -103,6 +101,19 @@ export class ProductsComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.updatePaginator();
 
+    // console.log('this.currentPage :', this.currentPage);
+    // console.log('this.pageSize :', this.pageSize);
+
+
+  }
+
+  generateStarRating(rating: number): string {
+    const maxStars = 5;
+    const fullStars = Math.max(0, Math.min(maxStars, Math.floor(rating)));
+    const halfStar = rating % 1 !== 0;
+    const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
+    const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
+    return stars;
   }
 
   // goToFirstPage(): void {
