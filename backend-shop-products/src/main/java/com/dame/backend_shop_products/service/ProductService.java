@@ -29,7 +29,7 @@ public class ProductService {
     }
 
     public Product saveProduct(Product product) {
-        validateProduct(product); // Validation des champs obligatoires
+        validateProduct(product);
 
         return productRepository.save(product);
     }
@@ -63,7 +63,6 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-//    public void deleteProduct(Long id) {productRepository.deleteById(id); }
 
     public Product updateProduct(Long id, Product productDetails) {
         Product existingProduct = productRepository.findById(id)
