@@ -5,11 +5,11 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductsAdminComponent } from './products-admin/products-admin.component';
 import { ProductsComponent } from './products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 
 
@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ProductsComponent,
     AddProductComponent,
     EditProductComponent,
+    CartItemComponent,
   ],
 
   imports: [

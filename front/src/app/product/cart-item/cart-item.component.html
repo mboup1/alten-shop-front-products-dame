@@ -1,0 +1,39 @@
+<!-- cart-item.component.html -->
+<!-- <p>edit-basket works!</p> -->
+<div  class="bg-white shadow p-4 rounded">
+  <h1 class="display-6 text-dark text-center">Votre panier</h1>
+  <hr class="bg-dark text-dark">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- <th scope="col">ID produit</th> -->
+        <th scope="col">Nom du produit</th>
+        <th scope="col">Image du produit</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix unitaire</th>
+        <th scope="col">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <!-- <td>{{ item.product.idProd }}</td> -->
+        <td>{{ item.product.name }}</td>
+        <td><img [src]="item.product.image" alt="{{ item.product.name }}"
+            style="max-width: 50px; max-height: 50px;"></td>
+        <td>
+          <button class="btn btn-danger me-2" (click)="removeItemFromCart(item.product.id, 1)">-</button>
+          {{ item.quantity }}
+          <button class="btn btn-primary ms-2" (click)="addItemToCart(item.product.id, 1)">+</button>
+        </td>
+        <td>{{ item.product.price }} €</td>
+        <!-- <td>{{ item.product.rating }} €</td> -->
+        <td>{{ 00000 }} €</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice ) : '0' }} €</strong></p>
+  <button class="btn btn-success" (click)="validateOrder()">
+    Passer la commande
+  </button> -->
+</div>
+

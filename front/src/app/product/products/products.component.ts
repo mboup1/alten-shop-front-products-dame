@@ -3,6 +3,9 @@ import { ProductService } from '../product.service';
 import { Product } from 'app/interfaces/product';
 import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { CartService } from '../service/cart.service';
+import { CartItem } from 'app/interfaces/CartItem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -27,7 +30,11 @@ export class ProductsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(data => {
@@ -82,9 +89,9 @@ export class ProductsComponent implements OnInit {
     this.showList = !this.showList;
   }
 
-  addItemToCart(product: Product): void {
-    console.log('Adding item to cart:', product);
-  }
+  // addItemToCart(product: Product): void {
+  //   console.log('Adding item to cart:', product);
+  // }
 
   updatePaginator(): void {
     const startIndex = this.currentPage * this.pageSize;
@@ -115,6 +122,50 @@ export class ProductsComponent implements OnInit {
     const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
     return stars;
   }
+
+
+  addItemToCart(productId: number, quantity: number): void {
+    const cartItem: CartItem = {
+      id: 0,
+      quantity: quantity,
+      product: {
+        id: productId,
+        code: '',
+        name: '',
+        description: '',
+        image: '',
+        price: 0,
+        category: '',
+        quantity: 0,
+        inventoryStatus: '',
+        rating: 0
+      }
+    };
+
+    this.cartService.addItemToCart(cartItem).subscribe({
+      next: (addedItem: CartItem) => {
+        console.log('Item added to cart:', addedItem);
+        this.router.navigate(['admin/cart-items']);
+      },
+      error: (error) => {
+        console.error('Error adding item to cart:', error);
+      }
+    });
+  }
+
+  removeItemFromCart(cartItemId: number, quantity: number): void {
+    this.cartService.removeItemFromCart(cartItemId, quantity).subscribe({
+      next: () => {
+        console.log('Item added to cart:', cartItemId);
+        this.router.navigate(['admin/cart-items']);
+      },
+      error: (error) => {
+        console.error('Error removing item from cart:', error);
+      }
+    });
+  }
+
+
 
   // goToFirstPage(): void {
   //   this.paginator.firstPage();
