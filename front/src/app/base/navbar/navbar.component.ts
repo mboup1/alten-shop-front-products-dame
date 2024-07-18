@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -11,6 +12,9 @@ export class NavbarComponent {
   @Input() isAuthenticated = false;
 
   public userName: string;
+  public cartItemCount: number = 0;
+
+
   public userMenuItems: MenuItem[] = [
     { label: 'Profile', icon: 'pi pi-fw pi-cog', routerLink: '/user/profile' },
     { label: 'Messages', icon: 'pi pi-fw pi-envelope', routerLink: '/user/messages' },
@@ -19,8 +23,12 @@ export class NavbarComponent {
   ];
 
   constructor(
+    private router: Router
 
   ) {}
 
 
+  // navigateToCart(): void {
+  //   this.router.navigate(['/cart']);
+  // }
 }
