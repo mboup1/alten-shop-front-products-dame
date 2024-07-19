@@ -36,6 +36,9 @@ Nous vous conseillons d'utiliser le composant data view de [PrimeNG](https://pri
  **Modifier un produit  avec Dame MBOUP :**
 ![public](front/doc/dame/edit-product-dame.jpg)
 
+ **Panier des artcles avec Dame MBOUP :**
+![public](front/doc/dame/cart-items-dame.jpg)
+
 Le menu latéral gauche doit contenir les accès à ces 2 composants.
 
 Un système de pagination doit être mis en place pour pouvoir afficher les produits par 10, 25 ou 50 comme ci-dessous :
