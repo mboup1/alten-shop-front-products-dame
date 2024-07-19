@@ -20,12 +20,18 @@ export class CartService {
   }
 
   removeItemFromCart(cartItemId: number, quantity: number = 1): Observable<void> {
-    const url = `${API_BASE_URL}/cart-items/${cartItemId}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(`${API_BASE_URL}/cart-items/${cartItemId}`);
+  }
+
+  getTotalPrice(): Observable<number> {
+    return this.http.get<number>(`${API_BASE_URL}/cart-items/totalPrice`);
+  }
+
+  calculateTotalQuantity(): Observable<number> {
+    return this.http.get<number>(`${API_BASE_URL}/cart-items/totalQuantity`);
   }
 
   clearAllCartItems(): Observable<void> {
-    const url = `${API_BASE_URL}/clear`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(`${API_BASE_URL}/clear`);
   }
 }

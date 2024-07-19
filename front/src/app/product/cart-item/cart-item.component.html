@@ -16,24 +16,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cartItems">
-        <!-- <td>{{ item.product.idProd }}</td> -->
+        <!-- <td>{{ item.product.id }}</td> -->
         <td>{{ item.product.name }}</td>
         <td><img [src]="item.product.image" alt="{{ item.product.name }}"
             style="max-width: 50px; max-height: 50px;"></td>
         <td>
-          <button class="btn btn-danger me-2" (click)="removeItemFromCart(item.product.id, 1)">-</button>
+          <button class="btn btn-danger me-2" (click)="removeItemFromCart(item.id, 1)">-</button>
           {{ item.quantity }}
           <button class="btn btn-primary ms-2" (click)="addItemToCart(item.product.id, 1)">+</button>
         </td>
         <td>{{ item.product.price }} €</td>
         <!-- <td>{{ item.product.rating }} €</td> -->
-        <td>{{ 00000 }} €</td>
+        <td>{{ item.totalWithTaxe | number:'1.2-2' }} €</td>
+
       </tr>
     </tbody>
   </table>
-  <!-- <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice ) : '0' }} €</strong></p>
-  <button class="btn btn-success" (click)="validateOrder()">
-    Passer la commande
-  </button> -->
+  <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice | number:'1.2-2' ) : '0' }} €</strong></p>
 </div>
 

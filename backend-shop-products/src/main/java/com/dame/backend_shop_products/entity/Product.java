@@ -36,4 +36,6 @@ public class Product {
     @JsonIgnore
     private List<CartItem> basketItems = new ArrayList<>();
 
+
+
 }

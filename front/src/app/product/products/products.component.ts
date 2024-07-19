@@ -139,7 +139,9 @@ export class ProductsComponent implements OnInit {
         quantity: 0,
         inventoryStatus: '',
         rating: 0
-      }
+      },
+      totalExcludeTaxe: 0,
+      totalWithTaxe: 0
     };
 
     this.cartService.addItemToCart(cartItem).subscribe({

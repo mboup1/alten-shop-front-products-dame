@@ -53,15 +53,4 @@ export class BreadcrumbComponent implements OnInit {
     });
   }
 
-  // private buildBreadcrumb(path: string): void {
-  //   const firstPath: SidenavItem = this.sidenavItems.find(item => '/' + item.id === path);
-  //   if (firstPath) {
-  //     this.items.push({
-  //       label: firstPath.labels[this.lang],
-  //       routerLink: firstPath.link,
-  //       command: () => this.sidenavService.setCurrentEntityName('')
-  //     });
-  //   }
-  // }
-
 }

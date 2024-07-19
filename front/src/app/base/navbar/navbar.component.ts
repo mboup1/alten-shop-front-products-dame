@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'app/product/service/cart.service';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -12,7 +13,8 @@ export class NavbarComponent {
   @Input() isAuthenticated = false;
 
   public userName: string;
-  public cartItemCount: number = 0;
+  cartItemCount!: number;
+
 
 
   public userMenuItems: MenuItem[] = [
@@ -23,12 +25,31 @@ export class NavbarComponent {
   ];
 
   constructor(
-    private router: Router
+    private cartService: CartService,
+    private router: Router,
+  ) { }
 
-  ) {}
+  ngOnInit(): void {
+    this.calculateTotalQuantity();
+  }
 
+  calculateTotalQuantity(): void {
+    this.cartService.calculateTotalQuantity().subscribe({
+      next: (totalQuantity: number) => {
+        this.cartItemCount = totalQuantity;
+      },
+      error: (error) => {
+        console.error('Error fetching total price:', error);
+      }
+    });
+  }
 
-  // navigateToCart(): void {
-  //   this.router.navigate(['/cart']);
-  // }
+  reloadCartItems(): void {
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
+    this.router.navigate(['/admin/cart-items']);
+
+  }
+
 }
