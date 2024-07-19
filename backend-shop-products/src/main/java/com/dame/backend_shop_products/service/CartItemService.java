@@ -77,6 +77,24 @@ public class CartItemService {
         }
     }
 
+    public double calculateTotalPrice() {
+        double totalPrice = 0.0;
+
+        for (CartItem item : getAllItems()) {
+            totalPrice += item.getProduct().getPrice() * item.getQuantity() * 1.2;
+        }
+
+        return totalPrice;
+    }
+
+    public int calculateTotalQuantity() {
+        int totalQuantity = 0;
+        for (CartItem item : getAllItems()) {
+            totalQuantity += item.getQuantity();
+        }
+        return totalQuantity;
+    }
+
     public void clearAllCartItems() {
         cartItemRepository.deleteAll();
     }

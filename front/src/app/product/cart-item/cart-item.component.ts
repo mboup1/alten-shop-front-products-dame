@@ -11,6 +11,8 @@ import { CartService } from '../service/cart.service';
 export class CartItemComponent implements OnInit {
 
   cartItems: CartItem[] = [];
+  totalPrice!: number;
+
 
 
   constructor(
@@ -19,10 +21,11 @@ export class CartItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchCartItems()
+    this.getCartItems();
+    this.getTotalPrice();
   }
 
-  fetchCartItems(): void {
+  getCartItems(): void {
 
     this.cartService.getAllCartItems().subscribe({
       next: (cartItems: CartItem[]) => {
@@ -36,6 +39,7 @@ export class CartItemComponent implements OnInit {
 
 
   addItemToCart(productId: number, quantity: number): void {
+
     const cartItem: CartItem = {
       id: 0,
       quantity: quantity,
@@ -50,13 +54,16 @@ export class CartItemComponent implements OnInit {
         quantity: 0,
         inventoryStatus: '',
         rating: 0
-      }
+      },
+      totalExcludeTaxe: 0,
+      totalWithTaxe: 0
     };
 
     this.cartService.addItemToCart(cartItem).subscribe({
       next: (addedItem: CartItem) => {
-        console.log('Item added to cart:', addedItem);
-        this.fetchCartItems();
+        // console.log('Item added to cart:', addedItem);
+        this.getCartItems();
+        this.getTotalPrice();
         this.router.navigate(['admin/cart-items']);
       },
       error: (error) => {
@@ -68,12 +75,25 @@ export class CartItemComponent implements OnInit {
   removeItemFromCart(cartItemId: number, quantity: number): void {
     this.cartService.removeItemFromCart(cartItemId, quantity).subscribe({
       next: () => {
-        console.log('Item added to cart:', cartItemId);
-        this.fetchCartItems();
+        // console.log('Item added to cart:', cartItemId);
+        this.getCartItems();
+        this.getTotalPrice();
         this.router.navigate(['admin/cart-items']);
       },
       error: (error) => {
         console.error('Error removing item from cart:', error);
+      }
+    });
+  }
+
+  getTotalPrice(): void {
+    this.cartService.getTotalPrice().subscribe({
+      next: (totalPrice: number) => {
+        this.totalPrice = totalPrice;
+        // console.log("Total Price: ", totalPrice);
+      },
+      error: (error) => {
+        console.error('Error fetching total price:', error);
       }
     });
   }

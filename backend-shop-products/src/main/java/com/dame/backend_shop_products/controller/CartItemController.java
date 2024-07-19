@@ -34,6 +34,18 @@ public class CartItemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedItem);
     }
 
+    @GetMapping("/totalPrice")
+    public ResponseEntity<Double> calculateTotalPrice() {
+        double totalPrice = cartItemService.calculateTotalPrice();
+        return ResponseEntity.ok().body(totalPrice);
+    }
+
+    @GetMapping("/totalQuantity")
+    public ResponseEntity<Integer> calculateTotalQuantity() {
+        int totalQuantity = cartItemService.calculateTotalQuantity();
+        return ResponseEntity.ok().body(totalQuantity);
+    }
+
     @DeleteMapping("/clear")
     public ResponseEntity<Void> clearAllCartItems() {
         cartItemService.clearAllCartItems();
