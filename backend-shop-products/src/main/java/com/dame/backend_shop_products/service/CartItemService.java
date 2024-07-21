@@ -1,5 +1,7 @@
 package com.dame.backend_shop_products.service;
 
+import com.dame.backend_shop_products.Exception.CartItemNotFoundException;
+import com.dame.backend_shop_products.Exception.InvalidQuantityException;
 import com.dame.backend_shop_products.entity.CartItem;
 import com.dame.backend_shop_products.entity.Product;
 import com.dame.backend_shop_products.repository.CartItemRepository;
@@ -53,13 +55,17 @@ public class CartItemService {
     }
 
     public CartItem removeItemFromCart(Long cartItemId, int quantity) {
+
+        System.out.println("quantity : "+ quantity);
+        
         // Retrieve the CartItem based on cartItemId
         CartItem existingItem = cartItemRepository.findById(cartItemId)
-                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+                .orElseThrow(() -> new CartItemNotFoundException("Cart item not found"));
+
 
         // Check if the quantity to remove is valid
         if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity to remove must be greater than zero");
+            throw new InvalidQuantityException("Quantity to remove must be greater than zero");
         }
 
         // Calculate the updated quantity

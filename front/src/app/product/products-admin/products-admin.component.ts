@@ -51,10 +51,12 @@ export class ProductsAdminComponent implements OnInit {
   onSearchName(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.searchName = target.value.trim().toLowerCase();
+
     this.filterProducts();
   }
 
   onSort(field: string): void {
+    console.log("field :", field)
 
     if (this.sortField === field) {
       this.sortOrder = -this.sortOrder;
@@ -101,7 +103,6 @@ export class ProductsAdminComponent implements OnInit {
   toggleSelectAll(event: Event): void {
     const target = event.target as HTMLInputElement;
     const isChecked = target.checked;
-
 
     if (isChecked) {
       this.selectedProducts = [...this.filteredProducts];
