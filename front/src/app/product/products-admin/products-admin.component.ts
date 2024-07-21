@@ -163,10 +163,6 @@ export class ProductsAdminComponent implements OnInit {
     this.paginatedProducts = this.filteredProducts.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
-  // onItemsPerPageChange(): void {
-  //   this.currentPage = 1;
-  //   this.applyPagination();
-  // }
 
   onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex + 1;
