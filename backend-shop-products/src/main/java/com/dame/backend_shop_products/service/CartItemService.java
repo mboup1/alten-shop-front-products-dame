@@ -57,7 +57,7 @@ public class CartItemService {
     public CartItem removeItemFromCart(Long cartItemId, int quantity) {
 
         System.out.println("quantity : "+ quantity);
-        
+
         // Retrieve the CartItem based on cartItemId
         CartItem existingItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(() -> new CartItemNotFoundException("Cart item not found"));
