@@ -1,0 +1,27 @@
+# Build the project, run tests, and create a JAR package
+./mvnw clean package
+
+# Build and start the Docker containers
+docker-compose up --build
+
+# Check the application logs
+docker logs backend-shop-products-app-1
+
+# Check the database logs
+docker logs backend-shop-products-mysql-1
+
+# Log in to Docker Hub
+docker login
+
+# Tag the image
+docker tag backend-shop-products-app mboup1/backend-shop-products-app:latest
+
+# Push the image to Docker Hub
+docker push mboup1/backend-shop-products-app:latest
+
+*****************************
+# Manually build the Angular frontend
+RUN npm run build -- --configuration=production
+
+# Build and start the Docker containers
+docker-compose up --build
