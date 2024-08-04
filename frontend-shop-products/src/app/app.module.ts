@@ -10,7 +10,6 @@ import { BaseModule } from 'app/base/base.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { ProductModule } from './product/product.module';
 import { TagModule } from 'primeng/tag';
-import { ToastrModule } from 'ngx-toastr';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
@@ -27,7 +26,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     TagModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    // ToastrModule.forRoot(),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en' }
